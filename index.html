@@ -11,7 +11,77 @@
         />
         <link rel="icon" href="./icons/veriscribe.ico"/>
     </head>
+
+    <style>
+        /*The modal background*/
+        .modal {
+          display: none;
+          position: fixed;
+          z-index: 1;
+          padding-top: 100px;
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto;
+          background-color: #000000;
+          background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+        }
+
+        /*The Modal content*/
+        .modal-content {
+          background-color:#ffffff;
+          margin:auto;
+          padding: 40px;
+          border: 10px solid #888;
+          border-radius:20px;
+          width: 70%;
+        }
+
+        /*The Close Button*/
+        .close {
+          color: #aaaaaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+          color: #000;
+          text-decoration: none;
+          cursor: pointer;
+        }
+
+        .footer {
+          position: fixed;
+          bottom: 0;
+        }
+    </style>
+
     <body>
-        <div id="app"></div>
+      <div class = "footer">
+        <button id="MyBtn">About Us</button>
+      </div>
+
+        <div id="MyModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>About Veriscribe</h2>
+          <p>Veriscribe is ...</p>
+        </div>
+      </div>
+
+      <script>
+      var modal = document.getElementById("MyModal")
+      var btn = document.getElementById("MyBtn");
+      var span = document.getElementsByClassName("close")[0];
+      btn.onclick = function() {
+        modal.style.display = "block";
+      }
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+      </script>
     </body>
 </html>
