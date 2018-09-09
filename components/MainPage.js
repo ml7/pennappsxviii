@@ -48,8 +48,27 @@ class MainPage extends React.Component {
     })
   }
 
+  toggle1() {
+    this.setState({
+      shown1: !this.state.shown1
+    });
+  }
+
+  toggle2() {
+    this.setState({
+      shown2: !this.state.shown2
+    });
+  }
+
   render() {
     const currentItem = prescriptions[this.state.activeItemIdx];
+    var shown1 = {
+			display: this.state.shown1 ? "block" : "none"
+		};
+
+    var shown2 = {
+			display: this.state.shown2 ? "block" : "none"
+		};
 
     return (
       <div className={styles.root}>
@@ -90,8 +109,12 @@ class MainPage extends React.Component {
             })}
           </div>
           <div className={styles.prescriptionContent}>
-            <span className={styles.itemName}>{currentItem.name} <i class="far fa-question-circle"></i></span>
-            <span className={styles.subheader}>
+            <span className={styles.itemName}>{currentItem.name}
+            <button className={styles.btn} id="information" onClick={this.toggle1.bind(this)}>
+            <i class="far fa-question-circle"></i>
+            </button>
+            </span>
+            <span className={styles.subheader} style={shown1}>
               {currentItem.details}
             </span>
             <span className={styles.itemWarning}>
@@ -134,11 +157,25 @@ class MainPage extends React.Component {
                 <span className={styles.signatureText}>
                   Pharmacist signature
                 </span>
+
               </div>
+            </div>
+          </div>
+
+        <div className={styles.footer}>
+        <button className={styles.btn} id="MyBtn" onClick={this.toggle2.bind(this)}>About Us</button>
+        </div>
+
+          <div id="MyModal" className={styles.modal} style={shown2}>
+          <div className={styles.modalcontent}>
+            <span className={styles.close} onClick={this.toggle2.bind(this)}>&times;</span>
+            <h2>About Veriscribe</h2>
+            <p>Veriscribe is ...</p>
             </div>
           </div>
         </div>
       </div>
+
     )
   }
 }
