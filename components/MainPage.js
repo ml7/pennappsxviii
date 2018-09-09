@@ -39,12 +39,32 @@ class MainPage extends React.Component {
     super(props);
     this.state = {
       activeItemIdx: 0,
+      showDoctorSig: false,
+      showPharmaSig: false,
     }
   }
 
   _updateState(idx) {
     this.setState({
       activeItemIdx: idx,
+    })
+  }
+
+  _toggleDoctorSig = () => {
+    if (!this.state.showDoctorSig && this.state.showPharmaSig) {
+      prescriptions[this.state.activeItemIdx].status = 'approved';
+    }
+    this.setState({
+      showDoctorSig: !this.state.showDoctorSig,
+    })
+  }
+
+  _togglePharmaSig = () => {
+    if (this.state.showDoctorSig && !this.state.showPharmaSig) {
+      prescriptions[this.state.activeItemIdx].status = 'approved';
+    }
+    this.setState({
+      showPharmaSig: !this.state.showPharmaSig,
     })
   }
 
@@ -125,15 +145,21 @@ class MainPage extends React.Component {
               </div>
             </div>
             <div className={styles.signatureFields}>
-              <div className={styles.signatureField}>
-                <span className={styles.signatureText}>
-                  Doctor signature
-                </span>
+              <div className={styles.signatureField} onClick={this._toggleDoctorSig}>
+                {!this.state.showDoctorSig ?
+                  <span className={styles.signatureText}>
+                    Doctor signature
+                  </span> :
+                  <img src="../icons/pharma_sig.jpg" className={styles.sigImg}></img>
+                }
               </div>
-              <div className={styles.signatureField}>
-                <span className={styles.signatureText}>
-                  Pharmacist signature
-                </span>
+              <div className={styles.signatureField} onClick={this._togglePharmaSig}>
+                {!this.state.showPharmaSig ?
+                  <span className={styles.signatureText}>
+                    Pharmacist signature
+                  </span> :
+                  <img src="../icons/pharma_sig.jpg" className={styles.sigImg}></img>
+                }
               </div>
             </div>
           </div>

@@ -2,6 +2,7 @@
   background: #fff;
   display: flex;
   flex-direction: column;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: 95%;
   height: 100%;
   margin: 0;
@@ -199,4 +200,10 @@
 
 .signatureField:first-of-type {
   margin-right: 5vh;
+}
+
+.sigImg {
+  max-height: 7.5vh;
+  height: 7.5vh;
+  width: auto;
 }
